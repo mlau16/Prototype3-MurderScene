@@ -184,7 +184,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -1474176019319108240, guid: 6cca9a09cc350af428593d282878fb36, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.98490566, g: 0.029732943, b: 0.029732943, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -545,7 +545,7 @@ GameObject:
   - component: {fileID: 1561437658}
   - component: {fileID: 1561437657}
   m_Layer: 0
-  m_Name: clock-1516967_1920_0
+  m_Name: Object2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -599,7 +599,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -3172343695716827023, guid: c07e31eef98a1514db143f71475391ec, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.99622643, g: 0.06390891, b: 0.06390891, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
