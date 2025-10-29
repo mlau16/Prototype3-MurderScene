@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager I;
     public float timeLimit = 60f;
-    public Text timerText, taskText, endText;
+    public TextMeshProUGUI timerText, taskText, endText;
 
     float timeLeft;
     int stainsLeft, itemsLeft;

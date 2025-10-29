@@ -5,7 +5,7 @@ public class DragItems : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 {
     private Vector3 startPosition;
     private bool isPlaced = false;
-    private Transform correctSpot;
+    public Transform correctSpot;
     public float snapDistance = 0.5f;
 
     public void OnBeginDrag(PointerEventData eventData)

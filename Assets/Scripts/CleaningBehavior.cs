@@ -20,6 +20,7 @@ public class CleaningBehavior : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData) 
     {
         if(cleaned) return;
+        cleaned = true;
         StartCoroutine(CleanRoutine());
     }
 
