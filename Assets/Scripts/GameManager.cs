@@ -59,6 +59,11 @@ public class GameManager : MonoBehaviour
     {
         ended = true;
         endText.text = win ? "Scene Cleaned!" : "Time's Up";
+        AudioSource loopingMusic = GameObject.Find("BackgroundMusic").GetComponent<AudioSource>();
+        if (loopingMusic != null)
+        {
+            loopingMusic.Stop();
+        }
 
     }
 
