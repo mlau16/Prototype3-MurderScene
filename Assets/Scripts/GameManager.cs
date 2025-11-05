@@ -7,10 +7,12 @@ public class GameManager : MonoBehaviour
     public static GameManager I;
     public float timeLimit = 60f;
     public TextMeshProUGUI timerText, taskText, endText;
+    [SerializeField] GameObject Canvas;
 
     float timeLeft;
     int stainsLeft, itemsLeft;
     bool ended = false;
+    bool started = false;
 
     void Awake() => I = this;
 
@@ -22,18 +24,29 @@ public class GameManager : MonoBehaviour
         var allItems = FindObjectsByType<DragItems>(FindObjectsSortMode.None);
         itemsLeft = allItems.Length;
         UpdateUI();
+        Time.timeScale = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ended) return;
+        if (!started || ended) return;
         timeLeft -= Time.deltaTime;
         if(timeLeft <= 0)
         {
             EndGame(false);
         }
         UpdateUI();
+    }
+
+    public void StartGame()
+    {
+        started = true;
+        Time.timeScale = 1f;
+        if (Canvas != null)
+        {
+            Canvas.SetActive(true);
+        }
     }
 
     public void OnCleaned()
