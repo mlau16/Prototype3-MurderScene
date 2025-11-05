@@ -4,12 +4,15 @@ using System.Collections;
 
 public class CleaningBehavior : MonoBehaviour, IPointerDownHandler
 {
-    public float cleanTime = 1.5f;
-    private SpriteRenderer sr;
-    public bool cleaned { get; private set; } = false;
+    public float cleaningClicks = 5;
+    public float fadeSpeed = 0.2f;
 
+    private int clicks = 0;
+    private SpriteRenderer sr;
     private Color dirtyColor;
     private Color cleanColor;
+
+    public bool cleaned { get; private set; } = false;
 
     void Start() {
         sr = GetComponent<SpriteRenderer>();
@@ -24,29 +27,26 @@ public class CleaningBehavior : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData) 
     {
         if(cleaned) return;
-        cleaned = true;
-        StartCoroutine(CleanRoutine());
-    }
+        
+        clicks++;
+        float ratio = Mathf.Clamp01((float)clicks / cleaningClicks);
 
-    private System.Collections.IEnumerator CleanRoutine()
-    {
-        float t = 0f;
+        sr.color = Color.Lerp(dirtyColor, cleanColor, ratio * fadeSpeed + ratio);
 
-        while(t < cleanTime)
+        if (ratio >= 1f)
         {
-            t += Time.deltaTime;
-            sr.color = Color.Lerp(dirtyColor, cleanColor, t / cleanTime);
-            yield return null;
+            cleaned = true;
+            sr.color = cleanColor;
+
+            var drag = GetComponent<DragItems>();
+            if (drag != null)
+                drag.enabled = true;
+
+            if (GameManager.I != null)
+                GameManager.I.OnCleaned(); 
         }
-
-        cleaned = true;
-        sr.color = cleanColor;
-
-        var drag = GetComponent<DragItems>();
-        if (drag != null)
-            drag.enabled = true;
-            
-        GameManager.I.OnCleaned(); 
     }
-    
+            
 }
+    
+
