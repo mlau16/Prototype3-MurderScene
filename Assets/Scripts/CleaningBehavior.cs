@@ -6,7 +6,7 @@ public class CleaningBehavior : MonoBehaviour, IPointerDownHandler
 {
     public float cleanTime = 1.5f;
     private SpriteRenderer sr;
-    private bool cleaned = false;
+    public bool cleaned { get; private set; } = false;
 
     private Color dirtyColor;
     private Color cleanColor;
@@ -15,6 +15,10 @@ public class CleaningBehavior : MonoBehaviour, IPointerDownHandler
         sr = GetComponent<SpriteRenderer>();
         dirtyColor = sr.color;
         cleanColor = Color.white;
+
+        var drag = GetComponent<DragItems>();
+        if (drag != null)
+            drag.enabled = false;       
     } 
 
     public void OnPointerDown(PointerEventData eventData) 
@@ -37,6 +41,11 @@ public class CleaningBehavior : MonoBehaviour, IPointerDownHandler
 
         cleaned = true;
         sr.color = cleanColor;
+
+        var drag = GetComponent<DragItems>();
+        if (drag != null)
+            drag.enabled = true;
+            
         GameManager.I.OnCleaned(); 
     }
     
